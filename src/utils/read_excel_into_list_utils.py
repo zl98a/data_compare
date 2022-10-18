@@ -39,7 +39,7 @@ def convert_sheet_context_into_list(sheet):
                     if table[value] == '':
                         table[value] = None
     # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
-    # print(f"共{i}行")
+    print(f"共{i}行")
     return new_val_list2
 
 

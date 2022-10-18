@@ -2,7 +2,7 @@
     @功能：用于比对Excel中数据和json中存储数据的栏位值是否相同（全部转成String进行比较），并将具体差异输出到新的Excel中
 """
 from src.constant import sys_constant
-from src.utils import read_excel_into_list_utils, read_json_into_list_utils, lists_compare_utils, file_read_write_utils
+from src.utils import read_excel_into_list_utils, read_json_into_list_utils, lists_compare_utils_key_product_info, file_read_write_utils
 
 
 def process():

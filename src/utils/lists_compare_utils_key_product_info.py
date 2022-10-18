@@ -53,10 +53,9 @@ def get_dict_wih_same_key(new_list1, list2):
     i = 0
     for dict2 in list2:
         if dict2['年份'] == new_list1[0]:
-            if dict2['产品或服务产能单位'] == new_list1[6] and dict2['产品或服务产量单位'] == new_list1[7]:
-                if dict2['企业名称'] == new_list1[1] and dict2['主营产品或服务名称'] == new_list1[2]\
-            and dict2['边界'] == new_list1[3] or dict2['产品或服务产能'] == new_list1[4] and dict2['产品或服务产量'] == new_list1[5]:
-                    return dict2
+            if dict2['企业名称'] == new_list1[1] and dict2['主营产品或服务名称'] == new_list1[2]\
+            and dict2['边界'] == new_list1[3]:
+                return dict2
 
 
 def compare_different_wih_same_key(dict1, dict2):
@@ -97,8 +96,8 @@ def count(list3):
 
 if __name__ == '__main__':
     my_excel_file_path = '../../resource/mysqlTest.xlsx'
-    my_sheet_name = 'test04'
+    my_sheet_name = 'test_ads_product_key_info'
     list1 = read_excel_into_list(my_excel_file_path, my_sheet_name)
-    my_json_file_path = '../../resource/ads.json'
+    my_json_file_path = '../../resource/ads_product_key_info.json'
     list2 = read_json_into_list(my_json_file_path, "", "")
     compare_all_different(list1, list2)

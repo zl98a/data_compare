@@ -13,7 +13,7 @@ from xlutils.copy import copy
 def read_from_json(json_file_path, model, char_set):
     i = 0
     if '' == json_file_path.strip():
-        json_file_path = "../../resource/ads.json"
+        json_file_path = "../../resource/ads_product_key_info.json"
     if '' == char_set.strip():
         char_set = "UTF-8"
     if '' == model.strip():
@@ -24,7 +24,7 @@ def read_from_json(json_file_path, model, char_set):
         for table in json_data['data']:
             i += 1
         # print("根据json报文读取到的列表为：\n" + str(json_data['data']))
-        # print(f"共{i}行")   # 3224行
+        print(f"共{i}行")   # 3224行
         return json_data['data']
 
 
