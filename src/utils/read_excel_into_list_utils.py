@@ -10,11 +10,11 @@ def read_excel_into_list(excel_file_path, sheet_name):
     work_book = file_read_write_utils.read_from_excel(excel_file_path)
     # 2、将对应的sheet页内容读入到字典中
     sheet = work_book.sheet_by_name(sheet_name)
-    return convert_sheet_context_into_list(sheet)
+    return convert_sheet_context_into_list(sheet,sheet_name)
 
 
 # 将对应的sheet页内容读入到字典中
-def convert_sheet_context_into_list(sheet):
+def convert_sheet_context_into_list(sheet, sheet_name):
     fld_key_list = []
     fld_val_list = []
     new_val_list = []
@@ -29,21 +29,48 @@ def convert_sheet_context_into_list(sheet):
         if col_index >= 1:
             dict1 = dict(zip(fld_key_list, fld_val_list))
             new_val_list.append(dict1)
-    for table in new_val_list:
-        if table['产品或服务产能'] != '' or table['产品或服务产量'] != '':
-            i = 0
-            new_val_list2.append(table)
-            for table in new_val_list2:
-                i += 1
-                for value in table:
-                    if table[value] == '':
-                        table[value] = None
-    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 产品关键信息表
+    if sheet_name == 'test_product_key_info':
+        for table in new_val_list:
+            if table['产品或服务产能'] != '' or table['产品或服务产量'] != '':
+                i = 0
+                new_val_list2.append(table)
+                for table in new_val_list2:
+                    i += 1
+                    for value in table:
+                        if table[value] == '':
+                            table[value] = None
+
+    # 分国家年度GDP表
+    if sheet_name == 'test_country_year_gdp':
+        for table in new_val_list:
+            if table['gdp'] != '' or table['gdp_person'] != '':
+                i = 0
+                new_val_list2.append(table)
+                for table in new_val_list2:
+                    i += 1
+                    for value in table:
+                        if table[value] == '':
+                            table[value] = None
+
+    # 分年份分省份GDP表
+    if sheet_name == 'test_year_province_gdp':
+        for table in new_val_list:
+            if table['gdp'] != '' or table['gdp_person'] != '':
+                i = 0
+                new_val_list2.append(table)
+                for table in new_val_list2:
+                    i += 1
+                    for value in table:
+                        if table[value] == '':
+                            table[value] = None
+    print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
     print(f"共{i}行")
     return new_val_list2
 
 
 if __name__ == '__main__':
     my_excel_file_path = '../../resource/mysqlTest.xlsx'
-    my_sheet_name = 'test04'
+    my_sheet_name = 'test_country_year_gdp'
     final_dict = read_excel_into_list(my_excel_file_path, my_sheet_name)

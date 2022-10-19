@@ -22,9 +22,10 @@ def compare_all_different(list1, list2):
         for dict1 in list1:
             year = dict1['年份']  # 年份
             country_name = dict1['国家名称']  # 国家名称
-            GDP = dict1['GDP']  # GDP
-            # 通过三个字段标志另一个列表中的唯一字典
-            dict2 = get_dict_wih_same_key(new_list1=[year, country_name, GDP], list2=list2)
+            gdp = dict1['gdp']  # gdp
+            gdp_person = dict1['gdp_person'] # gdp_person
+            # 通过一个字段标志另一个列表中的唯一字典
+            dict2 = get_dict_wih_same_key(new_list1=[year, country_name, gdp, gdp_person], list2=list2)
             # 接下来就是两条字典数据比对
             try:
                 differ = set(dict1.items()) ^ set(dict2.items())
@@ -47,7 +48,7 @@ def compare_all_different(list1, list2):
 def get_dict_wih_same_key(new_list1, list2):
     i = 0
     for dict2 in list2:
-        if dict2['GDP'] == new_list1[2]:
+        if dict2['年份'] == new_list1[0]:
                 return dict2
 
 
@@ -91,6 +92,6 @@ if __name__ == '__main__':
     my_excel_file_path = '../../resource/mysqlTest.xlsx'
     my_sheet_name = 'test_country_year_gdp'
     list1 = read_excel_into_list(my_excel_file_path, my_sheet_name)
-    my_json_file_path = '../../resource/ads_product_key_info.json'
+    my_json_file_path = '../../resource/ads_country_year_gdp.json'
     list2 = read_json_into_list(my_json_file_path, "", "")
     compare_all_different(list1, list2)
