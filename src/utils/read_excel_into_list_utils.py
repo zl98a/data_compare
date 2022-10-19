@@ -36,11 +36,8 @@ def convert_sheet_context_into_list(sheet, sheet_name):
             if table['产品或服务产能'] != '' or table['产品或服务产量'] != '':
                 i = 0
                 new_val_list2.append(table)
-                for table in new_val_list2:
-                    i += 1
-                    for value in table:
-                        if table[value] == '':
-                            table[value] = None
+                new_val_list2.append(table)
+                table_none_format(new_val_list2)
 
     # 分国家年度GDP表
     if sheet_name == 'test_country_year_gdp':
@@ -48,26 +45,29 @@ def convert_sheet_context_into_list(sheet, sheet_name):
             if table['gdp'] != '' or table['gdp_person'] != '':
                 i = 0
                 new_val_list2.append(table)
-                for table in new_val_list2:
-                    i += 1
-                    for value in table:
-                        if table[value] == '':
-                            table[value] = None
+                new_val_list2.append(table)
+                table_none_format(new_val_list2)
 
     # 分年份分省份GDP表
     if sheet_name == 'test_year_province_gdp':
         for table in new_val_list:
             if table['gdp'] != '' or table['gdp_person'] != '':
-                i = 0
                 new_val_list2.append(table)
-                for table in new_val_list2:
-                    i += 1
-                    for value in table:
-                        if table[value] == '':
-                            table[value] = None
+                i = table_none_format(new_val_list2)
+    print(f'共{i}行')
     print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
-    print(f"共{i}行")
     return new_val_list2
+
+
+# 表内数据空值转换
+def table_none_format(new_val_list):
+    i = 0
+    for table in new_val_list:
+        for value in table:
+            i += 1
+            if table[value] == '':
+                table[value] = None
+    return i
 
 
 if __name__ == '__main__':
