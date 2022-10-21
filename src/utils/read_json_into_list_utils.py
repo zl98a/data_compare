@@ -9,5 +9,5 @@ def read_json_into_list(json_file_path, model, char_set):
 
 
 if __name__ == '__main__':
-    my_json_file_path = '../../resource/ads_product_key_info.json'
+    my_json_file_path = '../../resource/ads_year_province_gdp.json'
     read_json_into_list(my_json_file_path, "", "")

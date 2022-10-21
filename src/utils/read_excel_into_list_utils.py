@@ -31,31 +31,64 @@ def convert_sheet_context_into_list(sheet, sheet_name):
             new_val_list.append(dict1)
 
     # 产品关键信息表
-    if sheet_name == 'test_product_key_info':
+    if sheet_name == '产品关键信息':
         for table in new_val_list:
             if table['产品或服务产能'] != '' or table['产品或服务产量'] != '':
-                i = 0
                 new_val_list2.append(table)
-                new_val_list2.append(table)
-                table_none_format(new_val_list2)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
 
     # 分国家年度GDP表
-    if sheet_name == 'test_country_year_gdp':
-        for table in new_val_list:
-            if table['gdp'] != '' or table['gdp_person'] != '':
-                i = 0
-                new_val_list2.append(table)
-                new_val_list2.append(table)
-                table_none_format(new_val_list2)
-
-    # 分年份分省份GDP表
-    if sheet_name == 'test_year_province_gdp':
+    if sheet_name == '分国家年度GDP':
         for table in new_val_list:
             if table['gdp'] != '' or table['gdp_person'] != '':
                 new_val_list2.append(table)
                 i = table_none_format(new_val_list2)
-    print(f'共{i}行')
-    print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+        print(f'共{i}行')
+
+    # 分年份分省份GDP表
+    if sheet_name == '分年份分省份GDP':
+        for table in new_val_list:
+            if table['gdp'] != '' or table['gdp_person'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # 分国家年度人口数量表
+    if sheet_name == '分国家年度人口数':
+        for table in new_val_list:
+            if table['总人口'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 分年份分省份人口数量表
+    if sheet_name == '分年份分省份人口数量':
+        for table in new_val_list:
+            if table['总人口'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 中国百家上市公司双碳领导力排行榜表
+    if sheet_name == '中国百家上市公司双碳领导力排行榜':
+        for table in new_val_list:
+            if table['公司简称'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 分行业企业双碳领导力排行榜表
+    if sheet_name == '分行业企业双碳领导力排行榜':
+        for table in new_val_list:
+            if table['公司简称'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
     return new_val_list2
 
 
@@ -63,8 +96,8 @@ def convert_sheet_context_into_list(sheet, sheet_name):
 def table_none_format(new_val_list):
     i = 0
     for table in new_val_list:
+        i += 1
         for value in table:
-            i += 1
             if table[value] == '':
                 table[value] = None
     return i
@@ -72,5 +105,5 @@ def table_none_format(new_val_list):
 
 if __name__ == '__main__':
     my_excel_file_path = '../../resource/mysqlTest.xlsx'
-    my_sheet_name = 'test_country_year_gdp'
+    my_sheet_name = '分行业企业双碳领导力排行榜'
     final_dict = read_excel_into_list(my_excel_file_path, my_sheet_name)

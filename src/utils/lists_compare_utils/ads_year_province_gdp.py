@@ -21,15 +21,11 @@ def compare_all_different(list1, list2):
         # 其次获取list1中的一条字典数据，再获取list2中对应的一条字典数据，进行两条字典数据的比对
         for dict1 in list1:
             year = dict1['年份']  # 年份
-            enterprise_name = dict1['企业名称']  # 企业名称
-            main_product_service = dict1['主营产品或服务名称']  # 主营产品或服务名称
-            boundary = dict1['边界']  # 边界
-            capacity = dict1['产品或服务产能']  # 产品或服务产能
-            output_value = dict1['产品或服务产量']  # 产品或服务产量
-            capacity_unit = dict1['产品或服务产能单位']  # 产品或服务产能单位
-            output_value_unit = dict1['产品或服务产量单位']  # 产品或服务产量单位
-            # 通过三个字段标志另一个列表中的唯一字典
-            dict2 = get_dict_wih_same_key(new_list1=[year, enterprise_name, main_product_service, boundary, capacity, output_value, capacity_unit, output_value_unit], list2=list2)
+            province_name = dict1['地区']  # 地区
+            gdp = dict1['gdp']  # gdp
+            gdp_person = dict1['gdp_person'] # gdp_person
+            # 通过一个字段标志另一个列表中的唯一字典
+            dict2 = get_dict_wih_same_key(new_list1=[year, province_name, gdp, gdp_person], list2=list2)
             # 接下来就是两条字典数据比对
             try:
                 differ = set(dict1.items()) ^ set(dict2.items())
@@ -52,9 +48,7 @@ def compare_all_different(list1, list2):
 def get_dict_wih_same_key(new_list1, list2):
     i = 0
     for dict2 in list2:
-        if dict2['年份'] == new_list1[0]:
-            if dict2['企业名称'] == new_list1[1] and dict2['主营产品或服务名称'] == new_list1[2]\
-            and dict2['边界'] == new_list1[3]:
+        if dict2['年份'] == new_list1[0] and dict2['地区'] == new_list1[1]:
                 return dict2
 
 
@@ -95,9 +89,9 @@ def count(list3):
 
 
 if __name__ == '__main__':
-    my_excel_file_path = '../../resource/mysqlTest.xlsx'
-    my_sheet_name = 'test_product_key_info'
+    my_excel_file_path = '../../../resource/mysqlTest.xlsx'
+    my_sheet_name = '分年份分省份GDP'
     list1 = read_excel_into_list(my_excel_file_path, my_sheet_name)
-    my_json_file_path = '../../resource/ads_product_key_info.json'
+    my_json_file_path = '../../../resource/ads_year_province_gdp.json'
     list2 = read_json_into_list(my_json_file_path, "", "")
     compare_all_different(list1, list2)

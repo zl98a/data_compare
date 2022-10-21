@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../auto_test2/.idea/auto_test2.iml" filepath="$PROJECT_DIR$/../auto_test2/.idea/auto_test2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/data_compare2.iml" filepath="$PROJECT_DIR$/.idea/data_compare2.iml" />
     </modules>
   </component>
