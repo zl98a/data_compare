@@ -4,7 +4,7 @@
 import json
 import os
 
-import xlrd
+import xlrd2
 import xlwt
 from xlutils.copy import copy
 
@@ -28,13 +28,17 @@ def read_from_json(json_file_path, model, char_set):
         return json_data['data']
 
 
+if __name__ == '__main__':
+    read_from_json('../../resource/ads_enterprise_environment_punishment.json', 'r', 'UTF-8')
+
+
 # 根据excel路径将数据读入到工作薄中（读入内存）
 def read_from_excel(excel_file_path):
-    return xlrd.open_workbook(excel_file_path, 'rw')
+    return xlrd2.open_workbook(excel_file_path, 'rw')
 
 
 def read_excel_xls(path):
-    workbook = xlrd.open_workbook(path)  # 打开工作簿
+    workbook = xlrd2.open_workbook(path)  # 打开工作簿
     sheets = workbook.sheet_names()  # 获取工作簿中的所有表格
     worksheet = workbook.sheet_by_name(sheets[0])  # 获取工作簿中所有表格中的的第一个表格
     for i in range(0, worksheet.nrows):
@@ -74,7 +78,7 @@ def write_excel_xls(path, sheet_name, value):
 
 def write_excel_xls_append(path, value):
     index = len(value)  # 获取需要写入数据的行数
-    workbook = xlrd.open_workbook(path)  # 打开工作簿
+    workbook = xlrd2.open_workbook(path)  # 打开工作簿
     sheets = workbook.sheet_names()  # 获取工作簿中的所有表格
     worksheet = workbook.sheet_by_name(sheets[0])  # 获取工作簿中所有表格中的的第一个表格
     rows_old = worksheet.nrows  # 获取表格中已存在的数据的行数
