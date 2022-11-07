@@ -15,32 +15,32 @@ def compare_all_different(list1, list2):
     # 首先判断Excel 和 json 数据总数是否一致
     # print(count(list1))
     # print(count(list2))
-    # if count(list1) != count(list2):
-    #     print("表格数据总数和json数据总数对应不上！")
-    # else:
+    if count(list1) != count(list2):
+        print("表格数据总数和json数据总数对应不上！")
+    else:
     # 其次获取list1中的一条字典数据，再获取list2中对应的一条字典数据，进行两条字典数据的比对
-    for dict1 in list1:
-        rank = dict1['排名']
-        stock_name = dict1['公司简称']
-        # 通过一个字段标志另一个列表中的唯一字典
-        dict2 = get_dict_wih_same_key(new_list1=[rank, stock_name], list2=list2)
-        # 接下来就是两条字典数据比对
-        try:
-            differ = set(dict1.items()) ^ set(dict2.items())
-            a += 1
-            if len(differ) != 0:
-                i += 1
-                print(f"【{i}】--\ndict1（表格读取）：\n{dict1}\ndict2（json读取）:\n{dict2}\n相同关键字的栏位取值有差异，差异是:{differ}")
-                for item in list(differ):
-                    diff.append(item)
-            else:
-                # i += 1
-                # print(f"第{i}行数据比对一致")
+        for dict1 in list1:
+            rank = dict1['排名']
+            stock_name = dict1['公司简称']
+            # 通过一个字段标志另一个列表中的唯一字典
+            dict2 = get_dict_wih_same_key(new_list1=[rank, stock_name], list2=list2)
+            # 接下来就是两条字典数据比对
+            try:
+                differ = set(dict1.items()) ^ set(dict2.items())
+                a += 1
+                if len(differ) != 0:
+                    i += 1
+                    print(f"【{i}】--\ndict1（表格读取）：\n{dict1}\ndict2（json读取）:\n{dict2}\n相同关键字的栏位取值有差异，差异是:{differ}")
+                    for item in list(differ):
+                        diff.append(item)
+                else:
+                    # i += 1
+                    # print(f"第{i}行数据比对一致")
+                    pass
+            except AttributeError:
                 pass
-        except AttributeError:
-            pass
-    print(a)
-    return diff
+        print(a)
+        return diff
 
 
 def get_dict_wih_same_key(new_list1, list2):

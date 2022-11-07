@@ -1,6 +1,8 @@
 """
     @功能：用于读取Excel中数据，并将其转换为列表
 """
+from decimal import Decimal
+
 from src.utils import file_read_write_utils
 
 
@@ -30,10 +32,43 @@ def convert_sheet_context_into_list(sheet, sheet_name):
             dict1 = dict(zip(fld_key_list, fld_val_list))
             new_val_list.append(dict1)
 
-    # 产品关键信息表
+    # 企业数据————企业产值碳排放强度表
+    if sheet_name == '企业产值碳排放强度':
+        for table in new_val_list:
+            if table['企业产值碳排放强度'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # 企业数据————企业产品碳排放强度表
+    if sheet_name == '企业产品碳排放强度':
+        for table in new_val_list:
+            if table['企业产品碳排放强度'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # 企业数据————企业碳排放表
+    if sheet_name == '企业碳排放':
+        for table in new_val_list:
+            if table['企业碳排放总量（t）'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # 企业数据————产品关键信息表
     if sheet_name == '产品关键信息':
         for table in new_val_list:
             if table['产品或服务产能'] != '' or table['产品或服务产量'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # 企业数据————企业分结构碳排放表
+    if sheet_name == '企业分结构碳排放':
+        for table in new_val_list:
+            table['企业分结构碳排放量（t）'] = round(table['企业分结构碳排放量（t）'], 4)
+            if table['排放结构'] != '' or table['企业分结构碳排放量（t）'] != '':
                 new_val_list2.append(table)
                 i = table_none_format(new_val_list2)
         print(f'共{i}行')
@@ -89,6 +124,50 @@ def convert_sheet_context_into_list(sheet, sheet_name):
                 i = table_none_format(new_val_list2)
         print(f'共{i}行')
     # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 强度榜&总量榜单表
+    if sheet_name == '强度榜&总量榜单':
+        for table in new_val_list:
+            if table['公司简称'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 企业ESG评级表
+    if sheet_name == '企业ESG评级':
+        for table in new_val_list:
+            if table['ESG级别'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 企业TCFD评级表
+    if sheet_name == '企业TCFD评级':
+        for table in new_val_list:
+            table['G治理_权重'] = round(table['G治理_权重'], 2)
+            table['S战略_权重'] = round(table['S战略_权重'], 2)
+            table['R风险_权重'] = round(table['R风险_权重'], 2)
+            table['M&T指标与目标部分_权重'] = round(table['M&T指标与目标部分_权重'], 2)
+            table['总得分'] = round(table['总得分'], 2)
+            table['G治理_得分率'] = round(table['G治理_得分率'], 9)
+            table['S战略_得分率'] = round(table['S战略_得分率'], 9)
+            table['R风险_得分率'] = round(table['R风险_得分率'], 9)
+            table['M&T指标与目标部分_得分率'] = round(table['M&T指标与目标部分_得分率'], 9)
+            if table['评级结果'] != '':
+                new_val_list2.append(table)
+                i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 环境违法（第一批）——罚款,责令改正
+    if sheet_name == '罚款,责令改正':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
     return new_val_list2
 
 
@@ -105,5 +184,5 @@ def table_none_format(new_val_list):
 
 if __name__ == '__main__':
     my_excel_file_path = '../../resource/mysqlTest.xlsx'
-    my_sheet_name = '分行业企业双碳领导力排行榜'
+    my_sheet_name = '企业TCFD评级'
     final_dict = read_excel_into_list(my_excel_file_path, my_sheet_name)
