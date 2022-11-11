@@ -3,6 +3,8 @@
 """
 from decimal import Decimal
 
+import pandas as pd
+
 from src.utils import file_read_write_utils
 
 
@@ -161,6 +163,90 @@ def convert_sheet_context_into_list(sheet, sheet_name):
             i = table_none_format(new_val_list2)
         print(f'共{i}行')
 
+    # (分边界)企业数据————分边界产品碳排放强度表
+    if sheet_name == '分边界产品碳排放强度':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界产值碳排放强度表
+    if sheet_name == '分边界产值碳排放强度':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界分结构碳排放表
+    if sheet_name == '分边界分结构碳排放':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界分排放源碳排放表
+    if sheet_name == '分边界分排放源碳排放':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界细分排放源碳排放表
+    if sheet_name == '分边界细分排放源碳排放':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界碳排放表
+    if sheet_name == '分边界碳排放':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界能源消费总量表
+    if sheet_name == '分边界能源消费总量':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界分品种能源消费实物量表
+    if sheet_name == '分边界分品种能源消费实物量':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界分品种能源消费标准量表
+    if sheet_name == '分边界分品种能源消费标准量':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界能效水平表
+    if sheet_name == '分边界能效水平':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界污染物排放表
+    if sheet_name == '分边界污染物排放':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界工业固体废物排放及处理利用表
+    if sheet_name == '分边界工业固体废物排放及处理利用':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
     # 分国家年度GDP表
     if sheet_name == '分国家年度GDP':
         for table in new_val_list:
@@ -223,17 +309,20 @@ def convert_sheet_context_into_list(sheet, sheet_name):
     # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
 
     # 企业ESG评级表
-    if sheet_name == '企业ESG评级':
+    if sheet_name == 'ESG':
         for table in new_val_list:
+            print(type(table['E_实际得分']))
+            table['E_实际得分'] = round(table['E_实际得分'], 9)
             if table['ESG级别'] != '':
                 new_val_list2.append(table)
                 i = table_none_format(new_val_list2)
         print(f'共{i}行')
-    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+    print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
 
     # 企业TCFD评级表
     if sheet_name == '企业TCFD评级':
         for table in new_val_list:
+            # print(type(table['G治理_权重']))
             table['G治理_权重'] = round(table['G治理_权重'], 2)
             table['S战略_权重'] = round(table['S战略_权重'], 2)
             table['R风险_权重'] = round(table['R风险_权重'], 2)
@@ -243,6 +332,10 @@ def convert_sheet_context_into_list(sheet, sheet_name):
             table['S战略_得分率'] = round(table['S战略_得分率'], 9)
             table['R风险_得分率'] = round(table['R风险_得分率'], 9)
             table['M&T指标与目标部分_得分率'] = round(table['M&T指标与目标部分_得分率'], 9)
+            table['G治理_得分率算数平均值'] = round(table['G治理_得分率算数平均值'], 9)
+            table['S战略_得分率算数平均值'] = round(table['S战略_得分率算数平均值'], 9)
+            table['R风险_得分率算数平均值'] = round(table['R风险_得分率算数平均值'], 9)
+            table['M&T指标与目标部分_得分率算数平均值'] = round(table['M&T指标与目标部分_得分率算数平均值'], 9)
             if table['评级结果'] != '':
                 new_val_list2.append(table)
                 i = table_none_format(new_val_list2)
@@ -271,6 +364,6 @@ def table_none_format(new_val_list):
 
 
 if __name__ == '__main__':
-    my_excel_file_path = '../../resource/mysqlTest.xlsx'
-    my_sheet_name = '企业TCFD评级'
+    my_excel_file_path = '../../resource/zmd_use_case.xlsx'
+    my_sheet_name = 'ESG'
     final_dict = read_excel_into_list(my_excel_file_path, my_sheet_name)

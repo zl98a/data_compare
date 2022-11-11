@@ -86,8 +86,8 @@ def count(list3):
 
 
 if __name__ == '__main__':
-    my_excel_file_path = '../../../resource/mysqlTest.xlsx'
-    my_sheet_name = '企业ESG评级'
+    my_excel_file_path = '../../../resource/zmd_use_case.xlsx'
+    my_sheet_name = 'ESG'
     list1 = read_excel_into_list(my_excel_file_path, my_sheet_name)
     my_json_file_path = '../../../resource/ads_enterprise_esg.json'
     list2 = read_json_into_list(my_json_file_path, "", "")
