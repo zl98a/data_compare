@@ -86,8 +86,8 @@ def count(list3):
 
 if __name__ == '__main__':
     my_excel_file_path = '../../../resource/mysqlTest.xlsx'
-    my_sheet_name = '强度榜&总量榜单'
+    my_sheet_name = '中国百家上市公司双碳领导力排行榜'
     list1 = read_excel_into_list(my_excel_file_path, my_sheet_name)
-    my_json_file_path = '../../../resource/ads_china_listed_company_carbon_emission_and_intensity_rank.json'
+    my_json_file_path = '../../../resource/ads_china_listed_company_dc_responsibility_perform_rank.json'
     list2 = read_json_into_list(my_json_file_path, "", "")
     compare_all_different(list1, list2)

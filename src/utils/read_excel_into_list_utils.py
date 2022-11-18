@@ -2,6 +2,7 @@
     @功能：用于读取Excel中数据，并将其转换为列表
 """
 from decimal import Decimal
+from types import NoneType
 
 import pandas as pd
 
@@ -309,15 +310,61 @@ def convert_sheet_context_into_list(sheet, sheet_name):
     # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
 
     # 企业ESG评级表
-    if sheet_name == 'ESG':
+    if sheet_name == '企业ESG评级':
         for table in new_val_list:
-            print(type(table['E_实际得分']))
-            table['E_实际得分'] = round(table['E_实际得分'], 9)
+            environment_total_score = table['E_总分']
+            environment_actual_score = table['E_实际得分']
+            environment_score_rate = table['E-得分率']
+            environment_average_score_rate = table['E_得分率算数平均值']
+            environment_weight = table['E_权重']
+            society_total_score = table['S_总分']
+            society_actual_score = table['S_实际得分']
+            society_score_rate = table['S-得分率']
+            society_average_score_rate = table['S_得分率算数平均值']
+            society_weight = table['S_权重']
+            governance_total_score = table['G_总分']
+            governance_actual_score = table['G_实际得分']
+            governance_score_rate = ['G-得分率']
+            governance_average_score_rate = table['G_得分率算数平均值']
+            governance_weight = table['G_权重']
+            esg_total_score = table['ESG总分']
+            if type(environment_total_score) is float:
+                table['G_得分率算数平均值'] = round(environment_total_score, 9)
+            if type(environment_actual_score) is float:
+                table['E_实际得分'] = round(environment_actual_score, 9)
+            if type(environment_score_rate) is float:
+                table['E-得分率'] = round(environment_score_rate, 9)
+            if type(environment_average_score_rate) is float:
+                table['E_得分率算数平均值'] = round(environment_average_score_rate, 9)
+            if type(environment_weight) is float:
+                table['E_权重'] = round(environment_weight, 9)
+            if type(society_total_score) is float:
+                table['S_总分'] = round(society_total_score, 9)
+            if type(society_actual_score) is float:
+                table['S_实际得分'] = round(society_actual_score, 9)
+            if type(society_score_rate) is float:
+                table['S-得分率'] = round(society_score_rate, 9)
+            if type(society_average_score_rate) is float:
+                table['S_得分率算数平均值'] = round(society_average_score_rate, 9)
+            if type(society_weight) is float:
+                table['S_权重'] = round(society_weight, 9)
+            if type(governance_total_score) is float:
+                table['G_总分'] = round(governance_total_score, 9)
+            if type(governance_actual_score) is float:
+                table['G_实际得分'] = round(governance_actual_score, 9)
+            if type(governance_score_rate) is float:
+                table['G-得分率'] = round(governance_score_rate, 9)
+            if type(governance_average_score_rate) is float:
+                table['G_得分率算数平均值'] = round(governance_average_score_rate, 9)
+            if type(governance_weight) is float:
+                table['G_权重'] = round(governance_weight, 9)
+            if type(esg_total_score) is float:
+                table['ESG总分'] = round(esg_total_score, 4)
             if table['ESG级别'] != '':
                 new_val_list2.append(table)
                 i = table_none_format(new_val_list2)
         print(f'共{i}行')
-    print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
 
     # 企业TCFD评级表
     if sheet_name == '企业TCFD评级':
@@ -342,9 +389,19 @@ def convert_sheet_context_into_list(sheet, sheet_name):
         print(f'共{i}行')
     # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
 
-    # 环境违法（第一批）——罚款,责令改正
-    if sheet_name == '罚款,责令改正':
+    # 环境违法-罚款,责令关键字-抽检
+    if sheet_name == '罚款,责令关键字':
         for table in new_val_list:
+            table['罚款金额(万元)'] = round(table['罚款金额(万元)'], 4)
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 环境违法-罚款,责令关键字-抽检
+    if sheet_name == '市生态环境局关键字':
+        for table in new_val_list:
+            table['罚款金额(万元)'] = round(table['罚款金额(万元)'], 4)
             new_val_list2.append(table)
             i = table_none_format(new_val_list2)
         print(f'共{i}行')
@@ -364,6 +421,6 @@ def table_none_format(new_val_list):
 
 
 if __name__ == '__main__':
-    my_excel_file_path = '../../resource/zmd_use_case.xlsx'
-    my_sheet_name = 'ESG'
+    my_excel_file_path = '../../resource/environment_punishment.xlsx'
+    my_sheet_name = '罚款,责令关键字'
     final_dict = read_excel_into_list(my_excel_file_path, my_sheet_name)
