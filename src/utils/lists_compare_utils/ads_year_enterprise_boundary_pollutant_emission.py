@@ -92,7 +92,7 @@ def count(list3):
 
 if __name__ == '__main__':
     my_excel_file_path = '../../../resource/enterprise_data_boundary.xlsx'
-    my_sheet_name = '分边界工业固体废物排放及处理利用'
+    my_sheet_name = '分边界污染物排放'
     list1 = read_excel_into_list(my_excel_file_path, my_sheet_name)
     my_json_file_path = '../../../resource/ads_year_enterprise_boundary_pollutant_emission.json'
     list2 = read_json_into_list(my_json_file_path, "", "")

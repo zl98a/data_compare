@@ -25,8 +25,10 @@ def compare_all_different(list1, list2):
             energy_efficiency_index = dict1['能效指标来源']  # 能效指标来源
             energy_effecienty_index_source = dict1['原始能效指标名称']  # 原始能效指标名称
             energy_effecienty_index_original_index = dict1['能效指标']  # 能效指标
+            energy_effecienty_level = dict1['企业能效水平']  # 企业能效水平
+            energy_effecienty_level_unit = dict1['企业能效水平单位']  # 企业能效水平单位
             # 通过三个字段标志另一个列表中的唯一字典
-            dict2 = get_dict_wih_same_key(new_list1=[year, enterprise_name, energy_efficiency_index, energy_effecienty_index_source, energy_effecienty_index_original_index], list2=list2)
+            dict2 = get_dict_wih_same_key(new_list1=[year, enterprise_name, energy_efficiency_index, energy_effecienty_index_source, energy_effecienty_index_original_index, energy_effecienty_level, energy_effecienty_level_unit], list2=list2)
             # 接下来就是两条字典数据比对
             try:
                 differ = set(dict1.items()) ^ set(dict2.items())
@@ -50,7 +52,8 @@ def get_dict_wih_same_key(new_list1, list2):
     i = 0
     for dict2 in list2:
         if dict2['年份'] == new_list1[0] and dict2['企业名称'] == new_list1[1] and dict2['能效指标来源'] == new_list1[2] and \
-                dict2['原始能效指标名称'] == new_list1[3] and dict2['能效指标'] == new_list1[4]:
+                dict2['原始能效指标名称'] == new_list1[3] and dict2['能效指标'] == new_list1[4] and dict2['企业能效水平'] == new_list1[5] \
+                and dict2['企业能效水平单位'] == new_list1[6]:
             return dict2
 
 

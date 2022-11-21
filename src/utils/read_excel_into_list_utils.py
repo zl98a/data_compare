@@ -241,6 +241,20 @@ def convert_sheet_context_into_list(sheet, sheet_name):
             i = table_none_format(new_val_list2)
         print(f'共{i}行')
 
+    # (分边界)企业数据————分边界污染物物理排放强度表
+    if sheet_name == '分边界污染物物理排放强度':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
+    # (分边界)企业数据————分边界污染物经济排放强度表
+    if sheet_name == '分边界污染物经济排放强度':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+
     # (分边界)企业数据————分边界工业固体废物排放及处理利用表
     if sheet_name == '分边界工业固体废物排放及处理利用':
         for table in new_val_list:
@@ -303,6 +317,9 @@ def convert_sheet_context_into_list(sheet, sheet_name):
     # 强度榜&总量榜单表
     if sheet_name == '强度榜&总量榜单':
         for table in new_val_list:
+            table['年度碳排放（万吨）'] = round(table['年度碳排放（万吨）'], 0)
+            table['年度碳排放强度（吨/万元）'] = round(table['年度碳排放强度（吨/万元）'], 2)
+            table['年度营业收入（亿元）'] = round(table['年度营业收入（亿元）'], 0)
             if table['公司简称'] != '':
                 new_val_list2.append(table)
                 i = table_none_format(new_val_list2)
@@ -379,10 +396,10 @@ def convert_sheet_context_into_list(sheet, sheet_name):
             table['S战略_得分率'] = round(table['S战略_得分率'], 9)
             table['R风险_得分率'] = round(table['R风险_得分率'], 9)
             table['M&T指标与目标部分_得分率'] = round(table['M&T指标与目标部分_得分率'], 9)
-            table['G治理_得分率算数平均值'] = round(table['G治理_得分率算数平均值'], 9)
-            table['S战略_得分率算数平均值'] = round(table['S战略_得分率算数平均值'], 9)
-            table['R风险_得分率算数平均值'] = round(table['R风险_得分率算数平均值'], 9)
-            table['M&T指标与目标部分_得分率算数平均值'] = round(table['M&T指标与目标部分_得分率算数平均值'], 9)
+            table['G治理_得分率算数平均值'] = round(table['G治理_得分率算数平均值'], 2)
+            table['S战略_得分率算数平均值'] = round(table['S战略_得分率算数平均值'], 2)
+            table['R风险_得分率算数平均值'] = round(table['R风险_得分率算数平均值'], 2)
+            table['M&T指标与目标部分_得分率算数平均值'] = round(table['M&T指标与目标部分_得分率算数平均值'], 2)
             if table['评级结果'] != '':
                 new_val_list2.append(table)
                 i = table_none_format(new_val_list2)
