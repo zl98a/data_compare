@@ -23,9 +23,11 @@ def compare_all_different(list1, list2):
             year = dict1['年份']  # 年份
             enterprise_name = dict1['企业名称']  # 企业名称
             boundary = dict1['边界']  # 边界
-            total_carbon_emission = dict1['分边界碳排放总量（t）']  # 分边界碳排放总量（t）
+            energy_consumption_physial_quantity = dict1['分边界分品种能源消费实物量']  # 分边界分品种能源消费实物量
+            energy_variety_to_original_variety = dict1['原始能源品种']  # 原始能源品种
+            energy_variety = dict1['年鉴能源品种']  # 年鉴能源品种
             # 通过三个字段标志另一个列表中的唯一字典
-            dict2 = get_dict_wih_same_key(new_list1=[year, enterprise_name, boundary, total_carbon_emission], list2=list2)
+            dict2 = get_dict_wih_same_key(new_list1=[year, enterprise_name, boundary, energy_consumption_physial_quantity, energy_variety_to_original_variety, energy_variety], list2=list2)
             # 接下来就是两条字典数据比对
             try:
                 differ = set(dict1.items()) ^ set(dict2.items())
@@ -48,8 +50,8 @@ def compare_all_different(list1, list2):
 def get_dict_wih_same_key(new_list1, list2):
     i = 0
     for dict2 in list2:
-        if dict2['年份'] == new_list1[0] and dict2['企业名称'] == new_list1[1] and dict2['边界'] == new_list1[2] \
-                and dict2['分边界碳排放总量（t）'] == new_list1[3]:
+        if dict2['年份'] == new_list1[0] and dict2['企业名称'] == new_list1[1] and dict2['边界'] == new_list1[2] and dict2['原始能源品种'] == new_list1[4] \
+                and dict2['年鉴能源品种'] == new_list1[5]:
             return dict2
 
 
