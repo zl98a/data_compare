@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../auto_test2/.idea/auto_test2.iml" filepath="$PROJECT_DIR$/../auto_test2/.idea/auto_test2.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/data_compare2.iml" filepath="$PROJECT_DIR$/.idea/data_compare2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../web_ui/.idea/web自动化.iml" filepath="$PROJECT_DIR$/../web_ui/.idea/web自动化.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../auto_test_personal/.idea/自动化环境.iml" filepath="$PROJECT_DIR$/../auto_test_personal/.idea/自动化环境.iml" />
     </modules>
   </component>
 </project>

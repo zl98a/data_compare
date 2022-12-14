@@ -423,6 +423,57 @@ def convert_sheet_context_into_list(sheet, sheet_name):
             i = table_none_format(new_val_list2)
         print(f'共{i}行')
     # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+
+    # 排污许可-废气&废水关键字-抽检
+    if sheet_name == '废气&废水':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 环境信用-抽检（江苏）
+    if sheet_name == '江苏':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 碳市场-机组及生产设施信息
+    if sheet_name == '机组及生产设施信息':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 碳市场-委托检测关键词
+    if sheet_name == '委托检测关键词':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 碳市场-排放量信息
+    if sheet_name == '排放量信息':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 碳市场-基本信息
+    if sheet_name == '基本信息':
+        for table in new_val_list:
+            # table['统一社会信用代码'] = table['统一社会信用代码'].split('\'')[1]
+            # table[''] = table['统一社会信用代码'].split('\'')[1]
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
     return new_val_list2
 
 
@@ -438,6 +489,6 @@ def table_none_format(new_val_list):
 
 
 if __name__ == '__main__':
-    my_excel_file_path = '../../resource/environment_punishment.xlsx'
-    my_sheet_name = '罚款,责令关键字'
+    my_excel_file_path = '../../resource/carbon_market_confirm_method.xlsx'
+    my_sheet_name = '测试'
     final_dict = read_excel_into_list(my_excel_file_path, my_sheet_name)
