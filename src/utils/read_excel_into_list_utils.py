@@ -474,6 +474,30 @@ def convert_sheet_context_into_list(sheet, sheet_name):
             i = table_none_format(new_val_list2)
         print(f'共{i}行')
     # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 绿色荣誉评价-绿色工厂
+    if sheet_name == '绿色工厂':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 绿色荣誉评价-绿色供应链管理示范企业
+    if sheet_name == '绿色供应链管理示范企业':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
+
+    # 绿色荣誉评价-绿色设计产品
+    if sheet_name == '绿色设计产品':
+        for table in new_val_list:
+            new_val_list2.append(table)
+            i = table_none_format(new_val_list2)
+        print(f'共{i}行')
+    # print("根据Excel表格读取到的列表为: \n" + str(new_val_list2))
     return new_val_list2
 
 
